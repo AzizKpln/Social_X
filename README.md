@@ -18,7 +18,8 @@
 # Pictures Of Social_X Trojan Virus:
 # ![](banner/2.png)
 # ![](banner/3.png)
-
+# Programming Languages That I Used For This Project:
+* html,css,javascript,bash script,visual basic script,python,php
 # DISCLAIMER:
 [+]This tool is not coded for illegal activities.
 
