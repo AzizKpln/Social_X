@@ -20,6 +20,11 @@
 # ![](banner/3.png)
 # Programming Languages That I Used For This Project:
 * html,css,javascript,bash script,visual basic script,python,php
+# Virus Scan For Socialx_Backdoor:
+# ![](banner/files1.png)
+# ![](banner/scan1.png)
+# ![](banner/scan2.png)
+* Note:"Archive Damaged" is not a warning for a virus it is bypassed either.
 # DISCLAIMER:
 [+]This tool is not coded for illegal activities.
 
