@@ -6,6 +6,7 @@
 * Social_X is a penetration testing tool.
 # Youtube Video:
 * https://www.youtube.com/watch?v=eewoOCwGSyQ&t=644s
+* https://www.youtube.com/watch?v=AqRaIdhFhgs&t=19s
 # Follow Me On Instagram/Facebook:
 * https://www.instagram.com/aziz.kpln/
 * https://www.facebook.com/aziz.kaplan.96387
