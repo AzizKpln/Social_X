@@ -22,7 +22,7 @@ class Listener:
         print colors["OKBLUE"]
         print "------------------------------------------------------------------"
         print "                         By:Aziz Kaplan" 
-        print  "                          Version:1.1" 
+        print  "                          Version:1.2" 
         print  "------------------------------------------------------------------"
         print colors["YELLOW"]
         listener=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
