@@ -1,4 +1,4 @@
-# Socialx-Project:
+# Socialx-Project V1.2:
 # ![](banner/1.png)
 # What is Social_X:
 * Social_X is a Social Engineering And Remote Access Trojan Tool.
@@ -28,6 +28,8 @@
 # ![](banner/scan1.png)
 # ![](banner/scan2.png)
 * Note:"Archive Damaged" is not a warning for a virus it is bypassed either.
+# CURRENT VERSION:
+V1.2
 # DISCLAIMER:
 [+]This tool is not coded for illegal activities.
 
