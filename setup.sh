@@ -10,7 +10,7 @@ echo ${green}
 figlet Social_X -f banner/larry3d.flf 
 echo ${green} ------------------------------------------------------------------
 echo -e "                         By:Aziz Kaplan" 
-echo -e "                          Version:1.0" 
+echo -e "                          Version:1.1" 
 echo ${green} ------------------------------------------------------------------
 
 sudo dpkg --add-architecture i386 && sudo apt update -y
