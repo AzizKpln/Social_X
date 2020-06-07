@@ -27,9 +27,7 @@ sudo apt install xterm -y
 wine Windows/vbs2exe.exe
 wget https://www.python.org/ftp/python/2.7.18/python-2.7.18.amd64.msi
 wine msiexec /i python-2.7.18.amd64.msi
-mkdir python27
-mv python-2.7.18.amd64.msi python27/
-rm *.msi.1
+rm python-2.7.18.amd64.msi
 wine $HOME/.wine/drive_c/Python27/Scripts/pip.exe install pyinstaller
 wine $HOME/.wine/drive_c/Python27/Scripts/pip.exe install cryptography
 wine $HOME/.wine/drive_c/Python27/Scripts/pip.exe install Fernet
