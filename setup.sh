@@ -17,6 +17,7 @@ sudo dpkg --add-architecture i386 && sudo apt update -y
 sudo apt install libc6-dev -y
 sudo apt install gcc-9-base -y
 sudo apt install libgcc-9-dev -y
+sudo apt install libgcc-8-dev -y 
 sudo apt install wine -y
 sudo apt install wine -y
 sudo apt install chromium -y
