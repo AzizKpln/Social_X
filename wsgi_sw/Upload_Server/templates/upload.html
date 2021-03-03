@@ -1,0 +1,217 @@
+<?PHP
+echo shell_exec("python3 app.py");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Social_X By:Aziz Kaplan</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+        body {
+                background-image:url("../images/myImage.jpg");
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+            }   
+<style media="screen">
+                        #custom-button {
+                                padding: 15px;
+                                color:white;
+                                background-color:#006400;
+                                border:1px solid #000;
+                                border-radius:5px;
+                                cursor:pointer;   
+                                text-align:center;
+                                margin:6px 540px;
+                                font-size:21px;  
+                        }
+
+                        #custom-button:hover{
+                                background-color:green;
+                        }
+                        #upload-button {
+                                padding:10px;
+                                color:white;
+                                background-color:#006400;
+                                border:1px solid #000;
+                                border-radius:5px;
+                                cursor:pointer;
+                                text-align:center;
+                                margin: 6px 577px;
+                                font-size:21px;
+                        }
+                        #upload-button:hover {
+                                background-color:green;
+                        }
+                        body {
+                                margin: 0;
+                                  background-color: black;
+                        }
+                        h1 {
+                                text-align: center;
+                                text-transform: uppercase;
+                                color: 228B22;
+                        }
+                        h3 {
+                                text-align: center;
+                                color: 228B22;
+                        }
+                        p#hi {
+                                text-align: center;
+                                text-transform: uppercase;
+                                color: 228B22;
+
+                        }
+                        p#disclaimer {
+                                text-align: center;
+                                color: 228B22;
+                        }
+                        pre{
+                        text-align: center;
+                        color: 228B22;
+
+                        }
+        @media only screen and (max-width:1200px) {
+                #custom-button {
+                                padding: 20px;
+                                color:white;
+                                background-color:#006400;
+                                border:3px solid #000;
+                                border-radius:5px;
+                                cursor:pointer;
+                                text-align:center;
+                                margin:0px 350px;
+                                font-size:61px;
+                                width:599px;
+                        }
+
+                        #custom-button:hover{
+                                background-color:green;
+                        }
+
+                #upload-button {
+                                padding:20px;
+                                color:white;
+                                background-color:#006400;
+                                border:1px solid #000;
+                                border-radius:5px;
+                                cursor:pointer;
+                                text-align:center;
+                                margin: 20px 350px;
+                                font-size:61px;
+                                width:599px;
+                        }
+                        #upload-button:hover {
+                                background-color:green;
+                        }
+                pre{
+                        text-align: center;
+                        color: 228B22;
+                        font-size:28px;
+                        padding:70px;
+                        }
+                body {
+                                margin: 0;
+                                  background-color: black;
+                        }
+                        h1 {
+                                text-align: center;
+                                text-transform: uppercase;
+                                color: 228B22;
+                                width:1300px;
+                                font-size:49px;
+                        }
+                        h3 {
+                                text-align: center;
+                                color: 228B22;
+                                font-size:69px;
+                                width:1300px;
+                        }
+                        p#hi {
+                                text-align: center;
+                                text-transform: uppercase;
+                                color: 228B22;
+                                width:1300px;
+                                font-size:60px;
+                        }
+                        p#disclaimer {
+                                text-align: center;
+                                width:1300px;
+                                font-size:49px;
+
+
+        }
+                </style>
+        </head>
+
+                <pre style="color:green">
+____                                  ___            __   __     
+/\  _`\                   __          /\_ \          /\ \ /\ \    
+\ \,\L\_\    ___     ___ /\_\     __  \//\ \         \ `\`\/'/'   
+ \/_\__ \   / __`\  /'___\/\ \  /'__`\  \ \ \         `\/ > <     
+   /\ \L\ \/\ \L\ \/\ \__/\ \ \/\ \L\.\_ \_\ \_          \/'/\`\  
+   \ `\____\ \____/\ \____\\ \_\ \__/.\_\/\____\         /\_\\ \_\
+    \/_____/\/___/  \/____/ \/_/\/__/\/_/\/____/  _______\/_/ \/_/
+                                                 /\______\        
+                                                 \/______/        
+</pre>
+                <h3 id="hi" style="color:green; ">By:Aziz Kaplan </h3>
+                <p id="disclaimer" style="color:green">NOTE:Social_X Project is coded instead of FakeImageExploiter.It is a github project..</p>
+                <p id="disclaimer" style="color:green">GITHUB LINK:<a href="https://github.com/AzizKpln/Social_X" target="_blank" style="color:yellow">https://github.com/AzizKpln/Social_X</p></a>
+                <input id="file-picker" type="file"  name="file" accept="images/*" hidden="hidden" onchange="showFileSize()">
+                <button type="button" id="custom-button" onClick="document.getElementById('file-picker').click()">Choose A File</button>
+                <div id="msg" ></div>
+                <input type="submit" align="right" value="Upload!" id="upload-button">
+                <br><br><br><h1 style="color:green">This Is A File Upload/Download Server</h1>
+                <p id="hi" style="color:green">This Server Is Coded For Social_X Project</p>
+                <br>
+                <p id="disclaimer" style="color:green">---------------------------------------------------------------------</p>
+                <h3 style="color:green">DISCLAIMER</h3>
+                <p id="disclaimer" style="color:green">[+]This tool is not coded for illegal activities.</p>
+                <p id="disclaimer" style="color:green">[+]This tool must not be used in illegal activities</p>
+                <p id="disclaimer" style="color:green">[+]This tool has been coded for fun and legal purpose.</p>
+                <p id="disclaimer" style="color:green">[+]I am not responsible for illegal usage of this tool.</p>
+                <p id="disclaimer" style="color:green">[+]This tool must not be used for fooling people</p>
+                <p id="disclaimer" style="color:green">---------------------------------------------------------------------</p>
+              
+                <p id="disclaimer" style="color:green">NOTE:Social_X Project is coded instead of FakeImageExploiter.It is a github project.Github Project.></p>
+                <p id="disclaimer" style="color:green">Github Link:<a href="https://github.com/AzizKpln/Social_X" style="color:green" target="_blank">https://github.com/AzizKpln/Social_X</p>
+<script>
+    $("#file-picker").change(function(){
+
+        var input = document.getElementById('file-picker');
+
+        for (var i=0; i<input.files.length; i++)
+        {
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+
+            if ((ext != 'php' || ext!='js' || ext!='py'))
+            {
+                $("#msg").text("File Is Supported!")
+            }
+
+            else
+            {
+               $("#msg").text("File is NOT supported")
+               document.getElementById("file-picker").value ="";
+            }
+
+        }
+
+        var file = document.getElementById('file-picker');
+        var filesize = parseInt(file.files[0].size);
+        if ((filesize < 41943040))
+        {
+                $("#msg").text("File Is Supported!")
+        } 
+        else
+        {
+                document.getElementById("file-picker").value="";
+        }
+    } );
+
+</script>
