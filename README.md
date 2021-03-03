@@ -15,6 +15,10 @@
 # ![](banner/2.png)
 # ![](banner/3.png)
 
+# Reverse Shell Download-Upload Commands:
+#### download FILENAME=path_of_file
+#### upload path_of_file FILENAME=filename.extension
+
 # Scan Results[don't scan in virustotal or any online scanner websites]:
 
 ### https://antiscan.me/scan/new/result?id=BF5d14fusgZ2
