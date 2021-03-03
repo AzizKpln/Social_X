@@ -12,7 +12,7 @@ if [ $(whoami) != "root" ];then
 fi
 sudo rm CppCodes/* &> /dev/null
 sudo rm SOCIALX_BACKDOOR/*.exe &> /dev/null
-sudo rm WSGI_Server/Upload_Server/images/* &>/dev/null
+sudo rm wsgi_sw/Upload_Server/images/* &>/dev/null
 sudo killall -9 xterm 
 checK=$(sudo lsof -i :80)
 if [[ $checK != "" ]];then
@@ -23,7 +23,7 @@ if [[ $checK != "" ]];then
         sudo killall -9 $kill
     fi
 fi
-xterm -hold -e "echo -e 'Input Your Root Password\n~Social_X~' && sudo python3 WSGI_Server/Upload_Server/app.py" &> /dev/null &
+xterm -hold -e "echo -e 'Input Your Root Password\n~Social_X~' && sudo python3 wsgi_sw/Upload_Server/app.py" &> /dev/null &
 function banner(){
     echo ${green}
     figlet Social_X -f banner/larry3d.flf 
@@ -42,7 +42,7 @@ function binder() {
     echo -e "${green}[+]${lightblue}Enter The File Path That You Want To Embed(it could be jpg,docx,png etc.)"
     echo -e "\n"
     read -p  "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" file_path
-    sudo cp $file_path WSGI_Server/Upload_Server/images/
+    sudo cp $file_path wsgi_sw/Upload_Server/images/
     file=$(basename $file_path)
     IN="$file"
     set -- "$IN"
@@ -62,7 +62,7 @@ function binder() {
             read -p "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" exe_path
             exe_file=$(basename $exe_path)
             echo ${lightblue}
-            sudo cp $exe_path WSGI_Server/Upload_Server/images/
+            sudo cp $exe_path wsgi_sw/Upload_Server/images/
 
     elif [[ $ask == "n" || $ask == "no" || $ask == "NO"  || $ask == "N" ]] ;then
         clear
