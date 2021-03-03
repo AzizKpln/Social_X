@@ -40,6 +40,7 @@ mkdir RCedit && cp rcedit-x64.exe RCedit/ && rm rcedit-x64.exe
 mkdir SOCIALX_BACKDOOR
 mkdir CppCodes
 mkdir Metasploit
+mkdir wsgi_sw/Upload_Server/images
 wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-win32.zip
 unzip upx-3.96-win32.zip
 rm -r *.zip
