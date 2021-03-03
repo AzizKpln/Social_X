@@ -15,11 +15,15 @@
 # ![](banner/2.png)
 # ![](banner/3.png)
 
-#Scan Results[don't scan in virustotal or any online scanner websites]:
-###https://antiscan.me/scan/new/result?id=BF5d14fusgZ2
-###https://virusscan.jotti.org/en-US/filescanjob/s7cqrjr6zf# DISCLAIMER:
+# Scan Results[don't scan in virustotal or any online scanner websites]:
 
-#DISCLAIMER
-##[!]Do not use it in illegal activities.
-##[!]The user is responsable for his/her own action.
+### https://antiscan.me/scan/new/result?id=BF5d14fusgZ2
+
+### https://virusscan.jotti.org/en-US/filescanjob/s7cqrjr6zf# 
+
+# DISCLAIMER
+
+## [!]Do not use it in illegal activities.
+
+## [!]The user is responsable for his/her own action.
 
