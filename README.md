@@ -5,8 +5,8 @@
 * You can generate png/jpg/docx/xml etc. looking exe files.
 * Social_X is a penetration testing tool.
 # Youtube Video:
-* youtube.com
- 
+* https://www.youtube.com/watch?v=-WKf2tFiMe4
+
 # Picture Of Png Looking Exe File:
 # ![](banner/4.png)
 # Picture Of Pdf Looking Exe File:
