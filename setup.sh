@@ -22,11 +22,12 @@ sudo apt install libgcc-8-dev -y
 sudo apt install libc6-dev -y
 sudo apt install wine -y
 sudo apt install wine64 -y
+sudo apt install figlet -y
 sudo apt install chromium -y
 sudo apt install mono-complete -y
 sudo apt install xterm -y
-sudo apt install python3
-sudo apt install python3-pip
+sudo apt install python3 -y
+sudo apt install python3-pip -y
 sudo pip3 install -r requirements.txt
 wine Windows/vbs2exe.exe
 wget https://www.python.org/ftp/python/3.6.0/python-3.6.0.exe
