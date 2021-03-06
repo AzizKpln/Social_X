@@ -7,6 +7,9 @@
 # Youtube Video:
 * https://www.youtube.com/watch?v=-WKf2tFiMe4
 
+# Path
+* All the files are generated in wsgi_sw/Upload_Server/images
+
 # Picture Of Png Looking Exe File:
 # ![](banner/4.png)
 # Picture Of Pdf Looking Exe File:
