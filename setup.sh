@@ -42,7 +42,9 @@ mkdir SOCIALX_BACKDOOR
 mkdir CppCodes
 mkdir Metasploit
 mkdir wsgi_sw/Upload_Server/images
-wget https://github.com/upx/upx/releases/download/v3.96/upx-3.96-win32.zip
+wget http://www.angusj.com/resourcehacker/reshacker_setup.exe
+wine reshacker_setup.exe
+rm reshacker_setup.exe
 unzip upx-3.96-win32.zip
 rm -r *.zip
 

