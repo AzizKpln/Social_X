@@ -43,6 +43,7 @@ mkdir CppCodes
 mkdir Metasploit
 mkdir wsgi_sw/Upload_Server/images
 wget http://www.angusj.com/resourcehacker/reshacker_setup.exe
+# Alternative: Resource Cracker https://www.pelock.com/download/resource-cracker.exe
 wine reshacker_setup.exe
 rm reshacker_setup.exe
 unzip upx-3.96-win32.zip
